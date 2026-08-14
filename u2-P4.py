@@ -1,4 +1,4 @@
-import os
+import time
 from google import genai
 
 
@@ -8,19 +8,19 @@ Temperature=float(input("enter phront tempreture:"))
 Top_p=float(input("top_p:"))
 Maximum_Tokens=int(input("maximum tokken"))
 
-if Temperature>=0 or Temperature <=1:
+if Temperature>=0 and Temperature<=1:
     temp=Temperature
 else:
     print("enter value of temperature between 0 and 1")
 
-
-if Top_p>=0 or Top_p <=1:
+if Top_p>=0 and Top_p <=1:
     top__p=Top_p
 else:
     print("enterr value of top_p between 0 and 1")
 
 
 
+response_list=[]
 
 client = genai.Client(api_key=api_key)
 while True:
@@ -29,10 +29,8 @@ while True:
         print("nice to meet you, goodbyee")
         break
     else:
-
-        response_list=[{"role":"user","content":user_prompt}]
-
-
+        response_list.append({"role":"user","content":user_prompt})
+        start=time()
         interaction = client.interactions.create(
         model=model_name,
         input=user_prompt,
@@ -44,10 +42,10 @@ while True:
     )
 
     response_all=interaction.output_text
-
+    print(response_all)
+    end=time()
+    print(interaction.model)
+    print(end-start)
     response_list.append({"role":"Assistsnt","content":response_all})
-
-
-
 
 
