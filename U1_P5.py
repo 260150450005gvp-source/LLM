@@ -36,7 +36,7 @@ while True:
     data.append({ "type": "model_output","content": [{"type": "text", "text": assistant_response,"input":interaction.usage.total_input_tokens,"output":interaction.usage.total_output_tokens,"total Tokens":interaction.usage.total_tokens}]})
     print("Gemini:", assistant_response)
     total_messages = len(data)//2
-    print(context_size)
+    print("Context limit",context_size)
     print("Total Messages:", total_messages)
     print("Total tokens:", interaction.usage.total_tokens)
     if interaction.usage.total_tokens>1500 and interaction.usage.total_tokens<CONTEXT_LIMIT:
