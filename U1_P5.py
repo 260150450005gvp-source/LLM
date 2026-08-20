@@ -39,9 +39,9 @@ while True:
     print(context_size)
     print("Total Messages:", total_messages)
     print("Total tokens:", interaction.usage.total_tokens)
-    if interaction.usage.total_tokens>1500 and interaction.usage.total_tokens<2000:
+    if interaction.usage.total_tokens>1500 and interaction.usage.total_tokens<CONTEXT_LIMIT:
         print("Alert! You are about to hit the context limit.")
-    elif interaction.usage.total_tokens>CONTEXT_LIMIT:
+    elif interaction.usage.total_tokens>=CONTEXT_LIMIT:
         print("context limit hit")
 
 with open(FILE, "w", encoding="utf-8") as file:
